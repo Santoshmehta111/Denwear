@@ -1,0 +1,37 @@
+import java.util.Scanner;
+ 
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String dressCode = scanner.nextLine();
+        if (dressCode.length() < 6 || dressCode.length() > 8) {
+            System.out.println("[" + dressCode + " is an invalid input]");
+        } else {
+            int mrp = Integer.parseInt(dressCode.substring(dressCode.length() - 4));
+            if (mrp < 1) {
+                System.out.println("[" + dressCode + " is an invalid input]");
+            } else {
+                int discount = calculateDiscount(mrp);
+                int offerPrice = mrp - discount;
+                System.out.println("[MRP price is Rs " + mrp + "]");
+                System.out.println("[Offer price is Rs " + offerPrice + "]");
+            }
+        }
+    }
+ 
+    private static int calculateDiscount(int mrp) {
+        if (mrp >= 1 && mrp <= 10) {
+            return 0;
+        } else if (mrp >= 11 && mrp <= 50) {
+            return 5;
+        } else if (mrp >= 51 && mrp <= 500) {
+            return 15;
+        } else if (mrp >= 501 && mrp <= 5000) {
+            return 105;
+        } else if (mrp >= 5001) {
+            return 1005;
+        } else {
+            return 0;
+        }
+    }
+}
